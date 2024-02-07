@@ -1,0 +1,72 @@
+Europe:
+--------
+France
+UK
+Russia
+Italy
+Germany
+Spain
+Poland
+Netherlands
+Ukraine
+Belgium
+
+North America:
+---------
+USA
+Mexico
+Canada
+Cuba
+Costa Rica
+Panama
+
+Asia
+---------
+India
+Turkey
+Iran
+Indonesia
+Philippines
+Japan
+Israel
+Malaysia
+Thailand
+Vietnam
+Iraq
+Bangladesh
+Pakistan
+
+South America
+---------
+Brazil
+Argentina
+Colombia
+Peru
+Chile
+Bolivia
+Uruguay
+Paraguay
+Venezuela
+
+Africa
+--------
+South Africa
+Morocco
+Tunisia
+Ethiopia
+Libya
+Egypt
+Kenya
+Zambia
+Algeria
+Botswana
+Nigeria
+Zimbabwe
+
+Oceania
+--------
+Australia
+Fiji
+Papua New Guinea
+New Caledonia
+New Zealand
