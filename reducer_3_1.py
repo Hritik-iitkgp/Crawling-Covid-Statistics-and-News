@@ -25,5 +25,6 @@ for line in sys.stdin:
     else:
         total_count+=count
 percentage=float(float(current_count/total_count)*100)
+print("{}\t{} ".format(current_country,int(current_count)))
 print("{}\t{:.2f} %".format(current_country,percentage))
 

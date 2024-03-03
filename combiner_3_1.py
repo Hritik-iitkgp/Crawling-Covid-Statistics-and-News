@@ -16,7 +16,7 @@ for line in sys.stdin:
     try:
         node2=float(node2.replace(',','')) if(node2!="N/A" or node2!='-') else 0
     except ValueError:
-        pass
+        continue
     if(current_country.lower() in node1.lower()):
         current_count=node2
         #print(node2)
