@@ -2,21 +2,7 @@ import os
 import subprocess
 from datetime import datetime
 
-def get_country_statistic(country):
-    # Simulated function to fetch statistics for the given country from the database or API
-    statistics = {
-        "total_cases": 1000,
-        "active_cases": 500,
-        "total_deaths": 100,
-        "total_recovered": 400,
-        "total_tests": 5000,
-        "death_per_million": 50,
-        "tests_per_million": 500,
-        "new_cases": 50,
-        "new_deaths": 10,
-        "new_recovered": 30
-    }
-    return statistics
+
 
 def show_all_statistics():
     country = input("Enter the country name: ")
