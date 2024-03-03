@@ -4,6 +4,8 @@ from datetime import datetime
 
 f=sys.argv[1]
 file1=open(f,'r')
+start_date=sys.argv[2]
+end_date=sys.argv[3]
 def extract_year_from_filename(filename):
     # Try to extract the first four characters as the year
     year_str  = re.search(r'\d{4}\b|\b\d{4}', filename)
@@ -47,6 +49,10 @@ for line in file1:
     if(date==None):
         continue
     formated_date=convert_to_date(date,year)
-
-    print('%s|%s'%(formated_date,text))
+    start_date_o=datetime.strptime(start_date,"%d-%m-%Y")
+    s_start_date=start_date_o.date()
+    end_date_o=datetime.strptime(end_date,"%d-%m-%Y")
+    e_end_date=end_date_o.date()
+    if(formated_date!=None and formated_date>=s_start_date and formated_date<=e_end_date):
+        print('%s|%s'%(formated_date,text))
 file1.close()
