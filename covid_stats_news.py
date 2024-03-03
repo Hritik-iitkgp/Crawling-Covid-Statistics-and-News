@@ -18,52 +18,45 @@ def get_country_statistic(country):
     }
     return statistics
 
-def show_country_statistics():
+def show_all_statistics():
     country = input("Enter the country name: ")
     print(f"Displaying statistics for {country}...")
     
     while True:
         print("\nSelect the type of statistic:")
-        print("a. Total cases")
-        print("b. Active cases")
-        print("c. Total deaths")
-        print("d. Total recovered")
-        print("e. Total tests")
-        print("f. Death/million")
-        print("g. Tests/million")
-        print("h. New case")
-        print("i. New death")
-        print("j. New recovered")
-        print("k. Back to country selection")
+        print("1. Total cases")
+        print("2. Active cases")
+        print("3. Total deaths")
+        print("4. Total recovered")
+        print("5. Total tests")
+        print("6. Death/million")
+        print("7. Tests/million")
+        print("8. New case")
+        print("9. New death")
+        print("10. New recovered")
+        print("11. Back to country selection")
         
-        choice = input("Enter your choice (a-k): ")
-        statistic_mapping = {
-            'a': 'total_cases',
-            'b': 'active_cases',
-            'c': 'total_deaths',
-            'd': 'total_recovered',
-            'e': 'total_tests',
-            'f': 'death_per_million',
-            'g': 'tests_per_million',
-            'h': 'new_cases',
-            'i': 'new_deaths',
-            'j': 'new_recovered'
-        }
-        
-        if choice == 'k':
+        choice = input("Enter your choice (1-11): ")
+        if choice == '11':
             print("Returning to the country selection...")
             break
-        elif choice in statistic_mapping:
-            statistic_type = statistic_mapping[choice]
-            country_statistic = get_country_statistic(country)
-            if statistic_type in country_statistic:
-                print(f"{statistic_type.replace('_', ' ').title()}: {country_statistic[statistic_type]}")
+        elif int(choice) in range(1,12):
+            command = " python3 mapper_3.1.py table.txt "+ country+" " +choice+" | sort -n| python3 reducer.py"
+            print(command)
+            # Execute shell command
+            result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    
+            # Check if the command was successful
+            if result.returncode == 0:
+                print("Shell command executed successfully!")
+                print(result.stdout)
             else:
-                print("Invalid statistic type. Please enter a valid option.")
+                print("Error executing shell command:")
+                print(result.stderr)
         else:
             print("Invalid choice. Please enter a valid option.")
 
-# Include the main() function and the menu code from the previous example here
+
 def show_country_statistics():
     country = input("Enter the country name: ")
     print(f"Displaying statistics for {country}...")
@@ -81,66 +74,73 @@ def show_statistics():
         if choice == '1':
             show_all_statistics()
         elif choice == '2':
-            show_country_statistics()
+            print('current data not fetched from website')
         elif choice == '3':
             print("Returning to the main menu...")
             break
         else:
             print("Invalid choice. Please enter a valid option.")
 
-# Include the main() function and the menu code from the previous example here
 
 
 def show_response_news(what):
-    start_date = input("Enter the start date (YYYY-MM-DD): ")
-    end_date = input("Enter the end date (YYYY-MM-DD): ")
+    start_date = input("Enter the start date (DD-MM-YYYY): ")
+    end_date = input("Enter the end date (DD-MM-YYYY): ")
     try:
-        date_str = input(prompt)
-        date = datetime.strptime(date_str, "%Y-%m-%d")  
+        date = datetime.strptime(start_date, "%d-%m-%Y")  
+        date1 = datetime.strptime(end_date, "%d-%m-%Y")
     except ValueError:
         print("Invalid date format.")
         show_response_news(what)
+        return
     print(f"Displaying news from {start_date} to {end_date}...")
     if(what=='response' or what=='news'):
         file1 = os.listdir(what)
         file1=[os.path.join(what, i) for i in file1]
     else:
         file1=os.listdir('countries')
-        file1=[os.path.join('countries', i) for i in file1 if (what in i)]
-    file1=' '.join(file1)
+        file1=[os.path.join('countries', i) for i in file1 if (what.lower() in i.lower())]
+    command='('
+    for i in file1:
+        command+="python3 mapper.py "+i+" "+ start_date+ " "+end_date+" | sort -n | python3 combiner.py ;wait &"
+    command+=')'
     # Add your logic to display response news based on the date range
-    command = "python3 mapper.py "+ file1 +" "+ start_date+ " "+end_date+"| sort -n | python3 combiner.py ;wait | sort -n| python3 reducer.py"
+    # $(MAPPER)  $(INPUT_FILE) | sort -n | $(COMBINE);wait &
+    command += "  | sort -n| python3 reducer.py"
     print(command)
-    return
     # Execute shell command
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-
+    
     # Check if the command was successful
     if result.returncode == 0:
         print("Shell command executed successfully!")
+        print(result.stdout)
     else:
         print("Error executing shell command:")
         print(result.stderr)	
         
 def show_country_news():
     country = input("Enter the country name: ")
-    print(f"Range for which news is present {country}...")
+    print(f"Range for which news is present {country}: ")
     directory_path = "countries"
-    files = os.listdir(directory)
+    files = os.listdir(directory_path)
     dates=[]
     flag=1
     paths=[]
     for i in files:
-        if(country in i):
+        if(country.lower() in i.lower()):
             years=['2019','2020','2021','2022','2023','2024']
-            year = [value for value in years if value in i][0]
+            year = [value for value in years if value in i.lower()][0]
             flag=0
             file_path = os.path.join(directory_path, i)
-            year=i.split('_')[1].split('.')[0]
             paths.append(i)
             f=open(file_path)
             for line in f:
                 date, _ = line.strip().split(':')
+                if 'On' in date:
+                    date=date[3:]
+                if(len(date.split())<2):
+                    continue
                 if(date.split()[0].isdigit()):
                     dates.append(year+"-"+date.split()[1])
                 else:
@@ -148,8 +148,10 @@ def show_country_news():
     if(flag):
         print("Please Enter valid country name")
         show_country_news()
+        return
     start,end=min(dates),max(dates)
     show_response_news(country)
+    
     
 def show_news():
     while True:
