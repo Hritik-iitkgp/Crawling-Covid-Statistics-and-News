@@ -1,3 +1,5 @@
+Github link : ```https://github.com/Hritik-iitkgp/Crawling-Covid-Statistics-and-News/tree/main```
+
 # Crawling-Covid-Statistics-and-News
 
 
@@ -15,7 +17,7 @@ This project involves creating a user-friendly system for extracting and managin
 
 - Crawl over Worldometer ( https://www.worldometers.info/coronavirus/ ) website for getting COVID-19 statistics.
 - Extract and save data for countries listed in "worldometers_countrylist.txt".
-- Create grammar for extracting specific fields (Total cases, Active cases, Total deaths, Total recovered, Total tests, Death/million, Tests/million, New case, New death, New recovered) from the data. Also Active cases, Daily death, New Recovered New cases)
+- Create grammar for extracting specific fields (Total cases, Active cases, Total deaths, Total recovered, Total tests, Death/million, Tests/million, New case, New death, New recovered) from the data. 
 
 
 ### Module 2: Crawling Wikipedia COVID-19 Timeline
@@ -37,7 +39,6 @@ This project involves creating a user-friendly system for extracting and managin
 
 - Utilized the MapCombineReduce paradigm for data retrieval.
 - Address user queries related to worldwide news and responses.
-- Calculated the Jaccard similarity 
 
 
 ### Module 4: Combining Modules 3.1 and 3.2
