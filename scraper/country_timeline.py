@@ -322,7 +322,7 @@ country=user_input.capitalize()
 # print(country)
 
 
-f = open('../Country.txt', 'r', encoding="utf-8")
+f = open('Country.txt', 'r', encoding="utf-8")
 for line in f:
 
     if country in line:
