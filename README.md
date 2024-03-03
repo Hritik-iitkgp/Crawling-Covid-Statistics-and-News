@@ -16,7 +16,7 @@ This project involves creating a user-friendly system for extracting and managin
 ### Module 1: Crawling Worldometer Website
 
 - Crawl over Worldometer ( https://www.worldometers.info/coronavirus/ ) website for getting COVID-19 statistics.
-- Extract and save data for countries listed in "worldometers_countrylist.txt".
+- Extract and save data for countries listed in "worldometers_countrylist.txt", stored in Worldometers_countrylist_html folder.
 - Create grammar for extracting specific fields (Total cases, Active cases, Total deaths, Total recovered, Total tests, Death/million, Tests/million, New case, New death, New recovered) from the data. 
 
 
@@ -26,19 +26,21 @@ This project involves creating a user-friendly system for extracting and managin
 - Extract worldwide news and responses and also the time line countries data.
 - Store results in text files based on time ranges and countries.
 - Stored in countries, news and response folders.
-
+- All the scrapers present in scraper.py
 
 ### Module 3.1: Addressing Queries of Worldometer COVID Statistics
 
 - Use MapCombineReduce paradigm to address queries.
 - Retrieve and display COVID statistics for each country.
 - Calculate percentage of total world cases.
+- used mapper3.1.py, combiner3.1.py, reducer3.1.py
 
 
 ### Module 3.2: Addressing Queries of Wikipedia COVID News
 
 - Utilized the MapCombineReduce paradigm for data retrieval.
 - Address user queries related to worldwide news and responses.
+- used mapper.py, combiner.py, reducer.py
 
 
 ### Module 4: Combining Modules 3.1 and 3.2
