@@ -286,16 +286,3 @@ def history(month,year):
             file.write(' '.join(content[1]) + "\n")
 history("February",'2021')
 
-
-"""
-Hi baby,
-i have wrtten the code that will store the responses same can be done for the eimline data as well
-so do that
-after 
-https://en.wikipedia.org/wiki/Timeline_of_the_COVID-19_pandemic#Timeline_by_country
- just extract the links like for every country 
-
-try implimenting the same way to extarct the info
- Bye Bye!
-
-"""
