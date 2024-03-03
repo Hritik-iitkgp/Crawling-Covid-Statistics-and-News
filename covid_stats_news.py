@@ -144,7 +144,7 @@ def show_country_news():
                 if(date.split()[0].isdigit()):
                     dates.append(year+"-"+date.split()[1])
                 else:
-                    dates.append(year+"-"+date.split()[0]+year)
+                    dates.append(year+"-"+date.split()[0])
     if(flag):
         print("Please Enter valid country name")
         show_country_news()
