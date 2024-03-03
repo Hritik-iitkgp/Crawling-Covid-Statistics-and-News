@@ -41,7 +41,7 @@ def show_all_statistics():
             print("Returning to the country selection...")
             break
         elif int(choice) in range(1,12):
-            command = " python3 mapper_3.1.py table.txt "+ country+" " +choice+" | sort -n| python3 reducer.py"
+            command = " python3 mapper_3.1.py table.txt "+ country+" " +choice+" | python3 combiner_3_1.py | python3 reducer_3_1.py"
             print(command)
             # Execute shell command
             result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
