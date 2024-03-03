@@ -127,8 +127,10 @@ def show_country_news():
     dates=[]
     flag=1
     paths=[]
+    command='('
     for i in files:
         if(country.lower() in i.lower()):
+            command+="python3 mapper_c_range.py "i+" "+country+" ["+ start_date+ ","+end_date+"] ;wait &"
             years=['2019','2020','2021','2022','2023','2024']
             year = [value for value in years if value in i.lower()][0]
             flag=0
@@ -145,6 +147,17 @@ def show_country_news():
                     dates.append(year+"-"+date.split()[1])
                 else:
                     dates.append(year+"-"+date.split()[0])
+    command=') | sort -n | python3 reducer_c_range.py'
+    print(command)
+    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    
+    # Check if the command was successful
+    if result.returncode == 0:
+        print("Shell command executed successfully!")
+        print(result.stdout)
+    else:
+        print("Error executing shell command:")
+        print(result.stderr)
     if(flag):
         print("Please Enter valid country name")
         show_country_news()
