@@ -208,7 +208,7 @@ def main():
     #file1.write(head+"\n")
     
     for i in header[1:]:
-        #x=i.split('|')
+        x=i.split('|')
         file1.write(x[1]+"|")
         file1.write(x[2]+"|")
         file1.write(x[8]+"|")
