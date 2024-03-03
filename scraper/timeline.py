@@ -307,8 +307,8 @@ def history(year,month=''):
             flag=1
         if(flag):
             temp.append(i)
-    for i in data1:
-        print(i)
+    # for i in data1:
+    #     print(i)
     final_data.append((date,temp))
     # with open(year+month+".txt", "w") as file:
 
@@ -328,7 +328,7 @@ yearsleft=['2019','2023','2024']
 # extracting it in a file
 for i in years:    
     for j in months:        
-        break
+        
         mm_yy=j+'_'+i
         print(mm_yy)
         req1 = Request('https://en.wikipedia.org/wiki/Timeline_of_the_COVID-19_pandemic_in_'+mm_yy)
