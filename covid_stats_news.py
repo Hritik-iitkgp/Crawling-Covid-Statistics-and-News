@@ -136,6 +136,7 @@ def show_country_news():
         show_country_news()
         return
     start,end=min(dates),max(dates)
+    print('Start:',start,' End: ',end)
     show_response_news(country)
     
     
