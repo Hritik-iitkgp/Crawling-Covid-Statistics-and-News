@@ -58,9 +58,15 @@ def show_statistics():
         choice = input("Enter your choice (1/2/3): ")
         
         if choice == '1':
-            show_all_statistics()
+           # Open the file in read mode
+            with open('tabel.txt', 'r') as file:
+                # Read the contents of the file
+                file_contents = file.read()
+                # Print the contents
+                print(file_contents)
         elif choice == '2':
-            print('current data not fetched from website')
+            show_all_statistics()
+            #print('current data not fetched from website')
         elif choice == '3':
             print("Returning to the main menu...")
             break
